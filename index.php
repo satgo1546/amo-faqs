@@ -47,11 +47,15 @@ require_once("lib/markdown/Markdown.inc.php");
                 ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <span class="label label-default"><?php echo $f->id; ?></span>
-                        Q：<?php echo "$f->q"; ?>
+                        <span class="label label-default"><?php echo $f -> id; ?></span>
+                        <a data-toggle="collapse" data-parent="#faqlist" href="#<?php echo strtolower($f -> id) ?>">
+                            Q：<?php echo "$f->q"; ?>
+                        </a>
                     </div>
-                    <div class="panel-body">
-                        <?php echo Michelf\Markdown::defaultTransform("A：" . $f->a); ?>
+                    <div class="panel-collapse collapse" id="<?php echo strtolower($f -> id) ?>">
+                        <div class="panel-body">
+                            <?php echo Michelf\Markdown::defaultTransform("A：" . $f -> a); ?>
+                        </div>
                     </div>
                 </div>
                 <?php
