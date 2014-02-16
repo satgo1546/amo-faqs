@@ -1,0 +1,24 @@
+/* 
+    Created on : 2014-2-16, 14:32:59
+    Author     : Satgo1546
+*/
+
+body {
+    padding-top: 50px;
+}
+.faqlist > h2::before {
+    content: "▼ ";
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #F59000;
+}
+.label-default {
+    background-color: #F59000;
+}
+#answer_editor {
+    position: relative;
+    width: 100%;
+    height: 550px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+}

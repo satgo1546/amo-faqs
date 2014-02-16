@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<faqs>
+  <category>
+    <name>Basic</name>
+    <faq>
+      <id>B1</id>
+      <q>Hello!</q>
+      <a>Hello!</a>
+    </faq>
+    <faq>
+      <id>B2</id>
+      <q>中文测试！</q>
+      <a>**Markdown** test!</a>
+    </faq>
+    <faq>
+      <id>B3</id>
+      <q>更多的Markdown！</q>
+      <a>
+<![CDATA[第一行必须为文本
+
++ 列表1
++ 列表2]]></a>
+    </faq>
+    <faq>
+      <id>B4</id>
+      <q></q>
+      <a>
+<![CDATA[同楼上
+
+1. 列表3
+2. 列表4]]></a>
+    </faq>
+    <faq>
+      <id>B5</id>
+      <q></q>
+      <a>
+<![CDATA[链接测试：[哈哈][http://bbs.66rpg.com]]]></a>
+    </faq>
+  </category>
+  <category>
+    <name>Other</name>
+    <faq>
+      <id>O1</id>
+      <q>Hello!</q>
+      <a>Hello!</a>
+    </faq>
+    <faq>
+      <id>O2</id>
+      <q></q>
+      <a></a>
+    </faq>
+    <faq>
+      <id>O3</id>
+      <q></q>
+      <a></a>
+    </faq>
+    <faq>
+      <id>O4</id>
+      <q></q>
+      <a></a>
+    </faq>
+    <faq>
+      <id>O5</id>
+      <q></q>
+      <a></a>
+    </faq>
+  </category>
+</faqs>
