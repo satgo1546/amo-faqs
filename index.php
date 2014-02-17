@@ -36,10 +36,24 @@ require_once("lib/markdown/Markdown.inc.php");
             <div class="container">
                 <h1></h1>
                 <p></p>
+                <div class="row">
+                    <form id="searchfaq" name="searchfaq" method="get" action="search.php" role="form">
+                        <div class="col-md-6">
+                            <label for="q" class="sr-only">输入你要查找的问题</label>
+                            <input type="text" name="q" id="q" class="form-control input-lg" placeholder="输入你要查找的问题" />
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">搜索</button>
+                        </div>
+                    </form>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-default btn-lg btn-block" onclick="toggleallfaqs();">展开/收起全部问题</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container">
-            <div class="faqlist">
+            <div class="faqlist" id="faqlist">
                 <?php
                 foreach ($faqxml -> category as $c) {
                     echo "<h2>$c->name</h2>";
@@ -48,7 +62,7 @@ require_once("lib/markdown/Markdown.inc.php");
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span class="label label-default"><?php echo $f -> id; ?></span>
-                        <a data-toggle="collapse" data-parent="#faqlist" href="#<?php echo strtolower($f -> id) ?>">
+                        <a data-toggle="collapse" href="#<?php echo strtolower($f -> id) ?>">
                             Q：<?php echo "$f->q"; ?>
                         </a>
                     </div>
@@ -66,5 +80,6 @@ require_once("lib/markdown/Markdown.inc.php");
         </div>
         <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="src/functions.js"></script>
     </body>
 </html>

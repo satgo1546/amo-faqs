@@ -33,16 +33,27 @@ require_once("src/loaded_list.php");
         </nav>
         <div class="container">
             <h1>添加新项目</h1>
+            <?php
+            if ($_POST["id"]) {
+                //$faqxml[$_POST["category"]]
+            ?>
+            <div class="alert alert-success">
+                <p>添加完毕。</p>
+                <p><a href="./">点击这里返回首页</a>。</p>
+            </div>
+            <?php
+            } else {
+            ?>
             <p>填写下面的表单后点击“添加”按钮。</p>
             <form id="newitem" name="newitem" method="post" action="additem.php" role="form">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="id">ID</label>
                             <input type="text" name="id" id="id" class="form-control" />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <div class="form-group">
                             <label for="category">分类</label>
                             <select name="category" id="category" class="form-control">
@@ -59,6 +70,9 @@ require_once("src/loaded_list.php");
                 <div id="answer_editor"></div>
                 <button type="submit" class="btn btn-primary" style="margin-top: 8px;">添加</button>
             </form>
+            <?php
+            }
+            ?>
         </div>
         <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
