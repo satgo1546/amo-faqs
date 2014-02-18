@@ -39,8 +39,8 @@ require_once("lib/markdown/Markdown.inc.php");
                 <div class="row">
                     <form id="searchfaq" name="searchfaq" method="get" action="search.php" role="form">
                         <div class="col-md-6">
-                            <label for="q" class="sr-only">输入你要查找的问题</label>
-                            <input type="text" name="q" id="q" class="form-control input-lg" placeholder="输入你要查找的问题" />
+                            <label for="q" class="sr-only">输入你要查找的问题的关键字</label>
+                            <input type="text" name="q" id="q" class="form-control input-lg" placeholder="输入你要查找的问题的关键字" />
                         </div>
                         <div class="col-md-3">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">搜索</button>
@@ -53,10 +53,15 @@ require_once("lib/markdown/Markdown.inc.php");
             </div>
         </div>
         <div class="container">
+            <blockquote>
+                <p>搬到新FAQ平台顿时感觉好新鲜啊~</p>
+                <small><cite title="satgo">satgo</cite></small>
+            </blockquote>
             <div class="faqlist" id="faqlist">
                 <?php
                 foreach ($faqxml -> category as $c) {
-                    echo "<h2>$c->name</h2>";
+                    echo "<hr />";
+                    echo "<h2><span class=\"label label-primary\">C-$c->id</span> $c->name</h2>";
                     foreach ($c -> faq as $f) {
                 ?>
                 <div class="panel panel-default">

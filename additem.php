@@ -39,13 +39,13 @@ require_once("src/loaded_list.php");
             ?>
             <div class="alert alert-success">
                 <p>添加完毕。</p>
-                <p><a href="./">点击这里返回首页</a>。</p>
+                <p><a href="./" class="alert-link">点击这里返回首页</a>。</p>
             </div>
             <?php
             } else {
             ?>
             <p>填写下面的表单后点击“添加”按钮。</p>
-            <form id="newitem" name="newitem" method="post" action="additem.php" role="form">
+            <form id="newitem" name="newitem" method="post" action="additem.php" role="form" autocomplete="off">
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group">
@@ -68,7 +68,7 @@ require_once("src/loaded_list.php");
                 <label>解答</label>
                 <input type="hidden" name="answer" id="answer" />
                 <div id="answer_editor"></div>
-                <button type="submit" class="btn btn-primary" style="margin-top: 8px;">添加</button>
+                <button type="submit" class="btn btn-primary" style="margin-top: 8px;" onclick="additemfunc();">添加</button>
             </form>
             <?php
             }
@@ -82,5 +82,6 @@ require_once("src/loaded_list.php");
             anseditor.setTheme("ace/theme/tomorrow");
             anseditor.getSession().setMode("ace/mode/markdown");
         </script>
+        <script type="text/javascript" src="src/functions.js"></script>
     </body>
 </html>

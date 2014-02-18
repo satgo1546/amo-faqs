@@ -2,6 +2,7 @@
 <faqs>
   <category>
     <name>Basic</name>
+    <id>B</id>
     <faq>
       <id>B1</id>
       <q>Hello!</q>
@@ -39,6 +40,7 @@
   </category>
   <category>
     <name>Other</name>
+    <id>O</id>
     <faq>
       <id>O1</id>
       <q>Hello!</q>
