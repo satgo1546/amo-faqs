@@ -35,15 +35,17 @@ require_once("lib/markdown/Markdown.inc.php");
         <div class="jumbotron">
             <div class="container">
                 <h1></h1>
-                <p></p>
+                <?php echo $faqxml->searchtip; ?>
                 <div class="row">
-                    <form id="searchfaq" name="searchfaq" method="get" action="search.php" role="form">
-                        <div class="col-md-6">
+                    <form id="searchfaq" name="searchfaq" method="get" action="search.php" role="form" autocomplete="off">
+                        <div class="col-md-9">
                             <label for="q" class="sr-only">输入你要查找的问题的关键字</label>
-                            <input type="text" name="q" id="q" class="form-control input-lg" placeholder="输入你要查找的问题的关键字" />
-                        </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">搜索</button>
+                            <div class="input-group input-group-lg">
+                                <input type="text" name="q" id="q" class="form-control input-lg" placeholder="输入你要查找的问题的关键字" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg searchbtn">搜索</button>
+                                </span>
+                            </div>
                         </div>
                     </form>
                     <div class="col-md-3">

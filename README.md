@@ -5,6 +5,11 @@ AMO FAQs Project
 
 这个站点目前暂时还没有发表，以后将代替[这个帖子](http://bbs.66rpg.com/thread-324640-1-1.html)。
 
+Recent News
+-----------
+
+2014-2-20：发现论坛助理不认识 PHP……这不科学……
+
 Other Projects Used
 -------------------
 

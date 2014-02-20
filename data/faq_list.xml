@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- CDATA 根本搞不清楚……让SimpleXML去处理吧~ -->
 <faqs>
-    <satgo>搬到新FAQ平台顿时感觉好新鲜啊~</satgo>
+    <satgo><![CDATA[新FAQ平台真是想让人掀桌……虽然是自己做的……]]></satgo>
+    <searchtip><![CDATA[
+<p class="text-primary">粉嫩的新手们！请在下面输入问题的<b>关键字</b>（不是问题哦）。</p>
+<p class="text-muted">例如“如何制作OP”请输入“OP”即可，多个关键字用空白字符隔开。</p>
+]]></searchtip>
   <category>
     <name>Basic</name>
     <id>B</id>
@@ -46,26 +51,6 @@
       <id>O1</id>
       <q>Hello!</q>
       <a>Hello!</a>
-    </faq>
-    <faq>
-      <id>O2</id>
-      <q></q>
-      <a></a>
-    </faq>
-    <faq>
-      <id>O3</id>
-      <q></q>
-      <a></a>
-    </faq>
-    <faq>
-      <id>O4</id>
-      <q></q>
-      <a></a>
-    </faq>
-    <faq>
-      <id>O5</id>
-      <q></q>
-      <a></a>
     </faq>
   </category>
 </faqs>

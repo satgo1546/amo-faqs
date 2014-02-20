@@ -22,3 +22,6 @@ h1, h2, h3, h4, h5, h6 {
 .panel-heading a {
     color: #333;
 }
+.searchbtn {
+    width: 10em;
+}
