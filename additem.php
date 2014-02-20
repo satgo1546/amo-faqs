@@ -35,11 +35,17 @@ require_once("src/loaded_list.php");
             <h1>添加新项目</h1>
             <?php
             if ($_POST["id"]) {
-                //$faqxml[$_POST["category"]]
+                foreach ($faqxml->xpath("category[name='" . $_POST["category"] . "']") as $cate) {
+                    $newitem = $cate->addChild("faq");
+                    $newitem->addChild("id", $_POST["id"]);
+                    $newitem->addChild("q", $_POST["question"]);
+                    $newitem->addChild("a", $_POST["answer"]);
+                }
+                $faqxml->saveXML("data/faq_list.xml");
             ?>
             <div class="alert alert-success">
                 <p>添加完毕。</p>
-                <p><a href="./" class="alert-link">点击这里返回首页</a>。</p>
+                <p><a href="additem.php" class="alert-link">继续添加</a>或<a href="./" class="alert-link">返回首页</a>。</p>
             </div>
             <?php
             } else {
@@ -57,6 +63,12 @@ require_once("src/loaded_list.php");
                         <div class="form-group">
                             <label for="category">分类</label>
                             <select name="category" id="category" class="form-control">
+                                <option value="nothing" selected="selected">— 分类 —</option>
+                                <?php
+                                foreach($faqxml->category as $co) {
+                                    echo "<option value=\"$co->name\">$co->name</option>";
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
