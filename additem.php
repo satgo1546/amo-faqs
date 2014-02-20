@@ -8,7 +8,7 @@ require_once("src/loaded_list.php");
         <title>AMO FAQs</title>
         <!-- AMO Custom CSS -->
         <link href="static/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+        <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.0.3/css/font-awesome.min.css" />
         <link rel="stylesheet" href="static/page.css" />
     </head>
     <body>
@@ -86,8 +86,8 @@ require_once("src/loaded_list.php");
             }
             ?>
         </div>
-        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.10.2.min.js"></script>
-        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="lib/ace-min/ace.js"></script>
         <script type="text/javascript">
             var anseditor = ace.edit("answer_editor");
