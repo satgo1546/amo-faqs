@@ -54,37 +54,44 @@ require_once("lib/markdown/Markdown.inc.php");
 				</div>
 			</div>
 		</div>
-		<div class="container">
-			<blockquote>
-				<p><?php echo $faqxml->satgo ?></p>
-				<small><cite title="satgo">satgo</cite></small>
-			</blockquote>
-			<div class="faqlist" id="faqlist">
-				<?php
-				foreach ($faqxml->category as $c) {
-					echo "<hr />";
-					echo "<h2><span class=\"label label-primary\">C-$c->id</span> $c->name</h2>";
-					foreach ($c->faq as $f) {
-						?>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<span class="label label-default"><?php echo $f->id; ?></span>
-								<a data-toggle="collapse" href="#<?php echo strtolower($f->id) ?>">
-									Q：<?php echo "$f->q"; ?>
-								</a>
-							</div>
-							<div class="panel-collapse collapse" id="<?php echo strtolower($f->id) ?>">
-								<div class="panel-body">
-									<?php echo Michelf\Markdown::defaultTransform("A：" . $f->a); ?>
+		<div class="wrapper">
+			<div class="container">
+				<blockquote>
+					<p><?php echo $faqxml->satgo ?></p>
+					<small><cite title="satgo">satgo</cite></small>
+				</blockquote>
+				<div class="faqlist" id="faqlist">
+					<?php
+					foreach ($faqxml->category as $c) {
+						echo "<hr />";
+						echo "<h2><span class=\"label label-primary\">C-$c->id</span> $c->name</h2>";
+						foreach ($c->faq as $f) {
+							?>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<span class="label label-default"><?php echo $f->id; ?></span>
+									<a data-toggle="collapse" href="#<?php echo strtolower($f->id) ?>">
+										Q：<?php echo "$f->q"; ?>
+									</a>
+								</div>
+								<div class="panel-collapse collapse" id="<?php echo strtolower($f->id) ?>">
+									<div class="panel-body">
+										<?php echo Michelf\Markdown::defaultTransform("A：" . $f->a); ?>
+									</div>
 								</div>
 							</div>
-						</div>
-						<?php
+							<?php
+						}
 					}
-				}
-				?>
+					?>
+				</div>
 			</div>
 		</div>
+		<footer>
+			<div class="container">
+				<p><?php echo $sitexml->footer; ?></p>
+			</div>
+		</footer>
 		<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="src/functions.js"></script>

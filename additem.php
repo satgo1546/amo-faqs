@@ -31,69 +31,76 @@ require_once("src/loaded_list.php");
 				</ul>
 			</div>
 		</nav>
-		<div class="container">
-			<h1>添加新项目</h1>
-			<?php
-			if ($_POST["id"]) {
-				foreach ($faqxml->xpath("category[name='{$_POST["category"]}']") as $cate) {
-					$newitem = $cate->addChild("faq");
-					$newitem->addChild("id", $_POST["id"]);
-					$newitem->addChild("q", $_POST["question"]);
-					$newitem->addChild("a", $_POST["answer"]);
+		<div class="wrapper">
+			<div class="container">
+				<h1>添加新项目</h1>
+				<?php
+				if ($_POST["id"]) {
+					foreach ($faqxml->xpath("category[name='{$_POST["category"]}']") as $cate) {
+						$newitem = $cate->addChild("faq");
+						$newitem->addChild("id", $_POST["id"]);
+						$newitem->addChild("q", $_POST["question"]);
+						$newitem->addChild("a", $_POST["answer"]);
+					}
+					$faqxml->saveXML("data/faq_list.xml");
+					?>
+					<div class="alert alert-success">
+						<p>添加完毕。</p>
+						<p><a href="additem.php" class="alert-link">继续添加</a>或<a href="./" class="alert-link">返回首页</a>。</p>
+					</div>
+					<?php
+				} else {
+					?>
+					<p>填写下面的表单后点击“添加”按钮。</p>
+					<form id="newitem" name="newitem" method="post" action="additem.php" role="form" autocomplete="off">
+						<div class="row">
+							<div class="col-md-5">
+								<div class="form-group">
+									<label for="id">ID</label>
+									<input type="text" name="id" id="id" class="form-control" />
+								</div>
+							</div>
+							<div class="col-md-7">
+								<div class="form-group">
+									<label for="category">分类</label>
+									<select name="category" id="category" class="form-control">
+										<option value="nothing" selected="selected">— 分类 —</option>
+										<?php
+										foreach ($faqxml->category as $co) {
+											echo "<option value=\"$co->name\">$co->name</option>";
+										}
+										?>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="question">问题</label>
+							<input type="text" name="question" id="question" class="form-control" />
+						</div>
+						<label>解答</label>
+						<input type="hidden" name="answer" id="answer" />
+						<div id="answer_editor"></div>
+						<span class="help-block">为了实现 Q&quot;A 的效果，在执行 Markdown 解释前会自动在第一行之前加入“A：”。</span>
+						<button type="submit" class="btn btn-primary" style="margin-top: 8px;" onclick="additemfunc();">添加</button>
+					</form>
+					<?php
 				}
-				$faqxml->saveXML("data/faq_list.xml");
 				?>
-				<div class="alert alert-success">
-					<p>添加完毕。</p>
-					<p><a href="additem.php" class="alert-link">继续添加</a>或<a href="./" class="alert-link">返回首页</a>。</p>
-				</div>
-				<?php
-			} else {
-				?>
-				<p>填写下面的表单后点击“添加”按钮。</p>
-				<form id="newitem" name="newitem" method="post" action="additem.php" role="form" autocomplete="off">
-					<div class="row">
-						<div class="col-md-5">
-							<div class="form-group">
-								<label for="id">ID</label>
-								<input type="text" name="id" id="id" class="form-control" />
-							</div>
-						</div>
-						<div class="col-md-7">
-							<div class="form-group">
-								<label for="category">分类</label>
-								<select name="category" id="category" class="form-control">
-									<option value="nothing" selected="selected">— 分类 —</option>
-									<?php
-									foreach ($faqxml->category as $co) {
-										echo "<option value=\"$co->name\">$co->name</option>";
-									}
-									?>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="question">问题</label>
-						<input type="text" name="question" id="question" class="form-control" />
-					</div>
-					<label>解答</label>
-					<input type="hidden" name="answer" id="answer" />
-					<div id="answer_editor"></div>
-					<span class="help-block">为了实现 Q&quot;A 的效果，在执行 Markdown 解释前会自动在第一行之前加入“A：”。</span>
-					<button type="submit" class="btn btn-primary" style="margin-top: 8px;" onclick="additemfunc();">添加</button>
-				</form>
-				<?php
-			}
-			?>
+			</div>
 		</div>
+		<footer>
+			<div class="container">
+				<p><?php echo $sitexml->footer; ?></p>
+			</div>
+		</footer>
 		<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="lib/ace-min/ace.js"></script>
 		<script type="text/javascript">
-					var anseditor = ace.edit("answer_editor");
-					anseditor.setTheme("ace/theme/tomorrow");
-					anseditor.getSession().setMode("ace/mode/markdown");
+						var anseditor = ace.edit("answer_editor");
+						anseditor.setTheme("ace/theme/tomorrow");
+						anseditor.getSession().setMode("ace/mode/markdown");
 		</script>
 		<script type="text/javascript" src="src/functions.js"></script>
 	</body>

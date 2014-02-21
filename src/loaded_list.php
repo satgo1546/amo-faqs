@@ -16,3 +16,4 @@
 //var_dump($listitems);
 
 $faqxml = simplexml_load_file(dirname(__FILE__) . "/../data/faq_list.xml");
+$sitexml = simplexml_load_file(dirname(__FILE__) . "/../data/site.xml");

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- CDATA 根本搞不清楚……让SimpleXML去处理吧~ -->
 <faqs>
 	<satgo><![CDATA[新FAQ平台真是想让人掀桌……虽然是自己做的……但结合了Markdown还是很奇葩……]]></satgo>

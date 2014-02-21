@@ -1,6 +1,6 @@
 /* 
-    Created on : 2014-2-16, 14:32:59
-    Author     : Satgo1546
+	Created on : 2014-2-16, 14:32:59
+	Author     : Satgo1546
 */
 
 body {
@@ -24,4 +24,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 .searchbtn {
 	width: 10em;
+}
+
+/*
+	Sticky footer
+	Really thanks the bootstrap tutorial page here:
+	http://v3.bootcss.com/examples/sticky-footer/
+*/
+html, body {
+	height: 100%;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto;
+	margin: 0px auto -60px;
+	padding: 0px 0px 60px;
+}
+footer {
+	height: 60px;
+	background-color: #FAEBCC;
+	border-top: thin solid orange;
+	margin-top: 4em;
+}
+footer p {
+	margin-top: 20px;
 }
