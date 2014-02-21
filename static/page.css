@@ -4,24 +4,24 @@
 */
 
 body {
-    padding-top: 50px;
+	padding-top: 50px;
 }
 h1, h2, h3, h4, h5, h6 {
-    color: #F59000;
+	color: #F59000;
 }
 .label-default {
-    background-color: #F59000;
+	background-color: #F59000;
 }
 #answer_editor {
-    position: relative;
-    width: 100%;
-    height: 550px;
-    border: 1px solid #CCC;
-    border-radius: 4px;
+	position: relative;
+	width: 100%;
+	height: 550px;
+	border: 1px solid #CCC;
+	border-radius: 4px;
 }
 .panel-heading a {
-    color: #333;
+	color: #333;
 }
 .searchbtn {
-    width: 10em;
+	width: 10em;
 }
