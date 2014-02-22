@@ -50,13 +50,34 @@ require_once("lib/markdown/Markdown.inc.php");
 						<button type="button"
 										class="btn btn-default btn-block"
 										onclick="toggleallfaqs();"
-										<?php if ($_GET["q"] == "") { echo "disabled=\"disabled\""; } ?>>
+										<?php if ($_GET["q"] == "") {
+											echo "disabled=\"disabled\"";
+										} ?>>
 							展开/收起全部问题
 						</button>
 					</div>
 				</div>
 				<div class="faqlist" id="faqlist">
 					<?php
+					foreach ($faqxml->xpath("category/faq[id='{$_GET["q"]}']") as $em) {
+						?>
+						<hr />
+						<h2>精确匹配</h2>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<span class="label label-default"><?php echo $em->id; ?></span>
+								<a data-toggle="collapse" href="#exactmatch">
+									Q：<?php echo $em->q; ?>
+								</a>
+							</div>
+							<div class="panel-collapse collapse in" id="exactmatch">
+								<div class="panel-body">
+									<?php echo Michelf\Markdown::defaultTransform("A：" . $em->a); ?>
+								</div>
+							</div>
+						</div>
+						<?php
+					}
 					foreach ($faqxml->category as $c) {
 						echo "<hr />";
 						echo "<h2><span class=\"label label-primary\">C-$c->id</span> $c->name</h2>";
@@ -74,7 +95,7 @@ require_once("lib/markdown/Markdown.inc.php");
 									</div>
 									<div class="panel-collapse collapse in" id="<?php echo strtolower($f->id) ?>">
 										<div class="panel-body">
-											<?php echo Michelf\Markdown::defaultTransform("A：" . $f->a); ?>
+			<?php echo Michelf\Markdown::defaultTransform("A：" . $f->a); ?>
 										</div>
 									</div>
 								</div>

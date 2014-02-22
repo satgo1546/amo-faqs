@@ -80,7 +80,7 @@ require_once("src/loaded_list.php");
 						<label>解答</label>
 						<input type="hidden" name="answer" id="answer" />
 						<div id="answer_editor"></div>
-						<span class="help-block">为了实现 Q&quot;A 的效果，在执行 Markdown 解释前会自动在第一行之前加入“A：”。</span>
+						<span class="help-block">为了实现 Q&amp;A 的效果，在执行 Markdown 解释前会自动在第一行之前加入“A：”。</span>
 						<button type="submit" class="btn btn-primary" style="margin-top: 8px;" onclick="additemfunc();">添加</button>
 					</form>
 					<?php
