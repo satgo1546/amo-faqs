@@ -5,8 +5,7 @@ require_once("src/loaded_list.php");
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>AMO FAQs</title>
-		<!-- AMO Custom CSS -->
+		<title><?php echo $sitexml->title; ?></title>
 		<link href="static/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="static/page.css" />
@@ -21,7 +20,7 @@ require_once("src/loaded_list.php");
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="./">
-					<img src="static/icon.png" alt="橙光FAQ" width="16" height="16" /> 橙光FAQ
+					<img src="static/icon.png" alt="<?php echo $sitexml->title; ?>" width="16" height="16" /> <?php echo $sitexml->title; ?>
 				</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -72,7 +71,7 @@ require_once("src/loaded_list.php");
 										?>
 									</select>
 								</div>
-							</div>
+							</div>								<div class="form-group">
 						</div>
 						<div class="form-group">
 							<label for="question">问题</label>

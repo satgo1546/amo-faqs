@@ -6,8 +6,7 @@ require_once("lib/markdown/Markdown.inc.php");
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>AMO FAQs</title>
-		<!-- AMO Custom CSS -->
+		<title><?php echo $sitexml->title; ?></title>
 		<link href="static/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="static/page.css" />
@@ -22,7 +21,7 @@ require_once("lib/markdown/Markdown.inc.php");
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="./">
-					<img src="static/icon.png" alt="橙光FAQ" width="16" height="16" /> 橙光FAQ
+					<img src="static/icon.png" alt="<?php echo $sitexml->title; ?>" width="16" height="16" /> <?php echo $sitexml->title; ?>
 				</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -42,13 +41,18 @@ require_once("lib/markdown/Markdown.inc.php");
 							<div class="input-group">
 								<input type="text" name="q" id="q" class="form-control" placeholder="输入你要查找的问题的关键字" value="<?php echo $_GET["q"]; ?>" />
 								<span class="input-group-btn">
-									<button type="submit" class="btn btn-primary btn-block searchbtn">搜索</button>
+									<button type="submit" class="btn btn-primary">搜索</button>
 								</span>
 							</div>
 						</div>
 					</form>
 					<div class="col-md-2">
-						<button type="button" class="btn btn-default btn-block" onclick="toggleallfaqs();">展开/收起全部问题</button>
+						<button type="button"
+										class="btn btn-default btn-block"
+										onclick="toggleallfaqs();"
+										<?php if ($_GET["q"] == "") { echo "disabled=\"disabled\""; } ?>>
+							展开/收起全部问题
+						</button>
 					</div>
 				</div>
 				<div class="faqlist" id="faqlist">

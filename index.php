@@ -6,8 +6,7 @@ require_once("lib/markdown/Markdown.inc.php");
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>AMO FAQs</title>
-		<!-- AMO Custom CSS -->
+		<title><?php echo $sitexml->title; ?></title>
 		<link href="static/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="static/page.css" />
@@ -22,7 +21,7 @@ require_once("lib/markdown/Markdown.inc.php");
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="./">
-					<img src="static/icon.png" alt="橙光FAQ" width="16" height="16" /> 橙光FAQ
+					<img src="static/icon.png" alt="<?php echo $sitexml->title; ?>" width="16" height="16" /> <?php echo $sitexml->title; ?>
 				</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -35,7 +34,7 @@ require_once("lib/markdown/Markdown.inc.php");
 		<div class="jumbotron">
 			<div class="container">
 				<h1></h1>
-				<?php echo $faqxml->searchtip; ?>
+				<?php echo $sitexml->searchtip; ?>
 				<div class="row">
 					<form id="searchfaq" name="searchfaq" method="get" action="search.php" role="form" autocomplete="off">
 						<div class="col-xs-12 col-md-9">
@@ -43,7 +42,7 @@ require_once("lib/markdown/Markdown.inc.php");
 							<div class="input-group input-group-lg">
 								<input type="text" name="q" id="q" class="form-control input-lg" placeholder="输入你要查找的问题的关键字" />
 								<span class="input-group-btn">
-									<button type="submit" class="btn btn-primary btn-block btn-lg searchbtn">搜索</button>
+									<button type="submit" class="btn btn-primary btn-lg searchbtn">搜索</button>
 								</span>
 							</div>
 						</div>
@@ -57,7 +56,7 @@ require_once("lib/markdown/Markdown.inc.php");
 		<div class="wrapper">
 			<div class="container">
 				<blockquote>
-					<p><?php echo $faqxml->satgo ?></p>
+					<p><?php echo $sitexml->satgo ?></p>
 					<small><cite title="satgo">satgo</cite></small>
 				</blockquote>
 				<div class="faqlist" id="faqlist">

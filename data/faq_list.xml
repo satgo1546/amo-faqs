@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- CDATA 根本搞不清楚……让SimpleXML去处理吧~ -->
 <faqs>
-	<satgo><![CDATA[新FAQ平台真是想让人掀桌……虽然是自己做的……但结合了Markdown还是很奇葩……]]></satgo>
-	<searchtip><![CDATA[
-<p class="text-primary">粉嫩的新手们！请在下面输入问题的<b>关键字</b>（不是问题哦）。</p>
-<p class="text-muted">例如“如何制作OP”请输入“OP”即可，多个关键字用空白字符隔开。</p>
-<p class="text-muted">Ctrl+F 也可以执行快速搜索，并且请使用这个方法搜索问题 ID，如 B1。</p>
-]]></searchtip>
 	<category>
 		<name>Basic</name>
 		<id>B</id>
