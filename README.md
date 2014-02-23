@@ -8,6 +8,8 @@ AMO FAQs Project
 Recent News
 -----------
 
+2014-2-23：准备导入数据。求一个免费空间= =
+
 2014-2-20：发现论坛助理不认识 PHP……这不科学……
 
 Other Projects Used
