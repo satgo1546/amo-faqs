@@ -9,6 +9,7 @@ function openallfaqs() {
 
 // OnClick event on additem.php
 // Just copy the contents in the Ace Editor.
+// And hash the value in the password entry.
 function additemfunc() {
 	$("#answer").val(anseditor.getValue());
 }

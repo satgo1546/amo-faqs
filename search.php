@@ -50,65 +50,75 @@ require_once("lib/markdown/Markdown.inc.php");
 						<button type="button"
 										class="btn btn-default btn-block"
 										onclick="toggleallfaqs();"
-										<?php if ($_GET["q"] == "") {
+										<?php
+										if ($_GET["q"] == "") {
 											echo "disabled=\"disabled\"";
-										} ?>>
+										}
+										?>>
 							展开/收起全部问题
 						</button>
 					</div>
 				</div>
+				<?php
+				if ($_GET["q"] != "") {
+				?>
 				<div class="faqlist" id="faqlist">
 					<?php
 					foreach ($faqxml->xpath("category/faq[id='{$_GET["q"]}']") as $em) {
-						?>
-						<hr />
-						<h2>精确匹配</h2>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<span class="label label-default"><?php echo $em->id; ?></span>
-								<a data-toggle="collapse" href="#exactmatch">
-									Q：<?php echo $em->q; ?>
-								</a>
-							</div>
-							<div class="panel-collapse collapse in" id="exactmatch">
-								<div class="panel-body">
-									<?php echo Michelf\Markdown::defaultTransform("A：" . $em->a); ?>
-								</div>
+					?>
+					<hr />
+					<h2>精确匹配</h2>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<span class="label label-default"><?php echo $em->id; ?></span>
+							<a data-toggle="collapse" href="#exactmatch">
+								Q：<?php echo $em->q; ?>
+							</a>
+						</div>
+						<div class="panel-collapse collapse in" id="exactmatch">
+							<div class="panel-body">
+								<?php echo Michelf\Markdown::defaultTransform("A：" . $em->a); ?>
 							</div>
 						</div>
-						<?php
+					</div>
+					<?php
 					}
 					foreach ($faqxml->category as $c) {
-						echo "<hr />";
-						echo "<h2><span class=\"label label-primary\">C-$c->id</span> $c->name</h2>";
-						$found = FALSE;
-						foreach ($c->faq as $f) {
-							if ((stripos((string) $f->q, $_GET["q"]) !== FALSE) || (stripos((string) $f->q, $_GET["q"]) !== FALSE)) {
-								$found = TRUE;
-								?>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<span class="label label-default"><?php echo $f->id; ?></span>
-										<a data-toggle="collapse" href="#<?php echo strtolower($f->id) ?>">
-											Q：<?php echo "$f->q"; ?>
-										</a>
-									</div>
-									<div class="panel-collapse collapse in" id="<?php echo strtolower($f->id) ?>">
-										<div class="panel-body">
-			<?php echo Michelf\Markdown::defaultTransform("A：" . $f->a); ?>
-										</div>
-									</div>
-								</div>
-								<?php
-							}
-						}
-						if ($found == FALSE) {
-							echo "在此分类下没有找到匹配项。";
-						}
+					echo "<hr />";
+					echo "<h2><span class=\"label label-primary\">C-$c->id</span> $c->name</h2>";
+					$found = FALSE;
+					foreach ($c->faq as $f) {
+					if ((stripos((string) $f->q, $_GET["q"]) !== FALSE) || (stripos((string) $f->q, $_GET["q"]) !== FALSE)) {
+					$found = TRUE;
+					?>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<span class="label label-default"><?php echo $f->id; ?></span>
+							<a data-toggle="collapse" href="#<?php echo strtolower($f->id) ?>">
+								Q：<?php echo "$f->q"; ?>
+							</a>
+						</div>
+						<div class="panel-collapse collapse in" id="<?php echo strtolower($f->id) ?>">
+							<div class="panel-body">
+								<?php echo Michelf\Markdown::defaultTransform("A：" . $f->a); ?>
+							</div>
+						</div>
+					</div>
+					<?php
+					}
+					}
+					if ($found == FALSE) {
+					echo "在此分类下没有找到匹配项。";
+					}
 					}
 					?>
 				</div>
+				<?php } else { ?>
+					<hr />
+					请输入问题的关键字。
+				<?php } ?>
 			</div>
+
 		</div>
 		<footer>
 			<div class="container">

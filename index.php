@@ -33,7 +33,7 @@ require_once("lib/markdown/Markdown.inc.php");
 		</nav>
 		<div class="jumbotron">
 			<div class="container">
-				<h1></h1>
+				<h1><?php echo $sitexml->bigtitle; ?></h1>
 				<?php echo $sitexml->searchtip; ?>
 				<div class="row">
 					<form id="searchfaq" name="searchfaq" method="get" action="search.php" role="form" autocomplete="off">
