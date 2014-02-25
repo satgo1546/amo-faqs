@@ -1,4 +1,4 @@
-AMO FAQs Project
+﻿AMO FAQs Project
 ================
 
 欢迎来到橙光 FAQ 项目的 GitHub 主页。于是不再解释为什么大标题使用英文了。
@@ -7,6 +7,8 @@ AMO FAQs Project
 
 Recent News
 -----------
+
+2014-2-25：在 3owl 上弄了一只新的空间，不管了……测试地址：[点击这里](http://faq.66avg.ga)。
 
 2014-2-23：准备导入数据。求一个免费空间= =
 
