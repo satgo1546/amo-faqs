@@ -36,27 +36,35 @@ require_once("src/manpwd.php");
 				<h1>添加新项目</h1>
 				<?php
 				if (isset($_POST["manpwd"])) {
-					if (crypt($_POST["manpwd"], "satgoisnthere") !== $manpwdhash) {
+					if (crypt($_POST["manpwd"], $salt) !== $manpwdhash) {
 						?>
 						<div class="alert alert-danger">
 							<p>你输入的管理者密码不正确。</p>
 						</div>
 						<?php
-						exit;
 					} else {
-						foreach ($faqxml->xpath("category[name='{$_POST["category"]}']") as $cate) {
-							$newitem = $cate->addChild("faq");
-							$newitem->addChild("id", $_POST["id"]);
-							$newitem->addChild("q", $_POST["question"]);
-							$newitem->addChild("a", $_POST["answer"]);
+						if ($_POST["category"] == "nothing") {
+							?>
+							<div class="alert alert-warning">
+								<p>请选择一个分类。</p>
+								<p>点击浏览器的后退按钮返回。</p>
+							</div>
+							<?php
+						} else {
+							foreach ($faqxml->xpath("category[name='{$_POST["category"]}']") as $cate) {
+								$newitem = $cate->addChild("faq");
+								$newitem->addChild("id", $_POST["id"]);
+								$newitem->addChild("q", $_POST["question"]);
+								$newitem->addChild("a", $_POST["answer"]);
+							}
+							$faqxml->saveXML("data/faq_list.xml");
+							?>
+							<div class="alert alert-success">
+								<p>添加完毕。</p>
+								<p><a href="additem.php" class="alert-link">继续添加</a>或<a href="./" class="alert-link">返回首页</a>。</p>
+							</div>
+							<?php
 						}
-						$faqxml->saveXML("data/faq_list.xml");
-						?>
-						<div class="alert alert-success">
-							<p>添加完毕。</p>
-							<p><a href="additem.php" class="alert-link">继续添加</a>或<a href="./" class="alert-link">返回首页</a>。</p>
-						</div>
-						<?php
 					}
 				} else {
 					?>
