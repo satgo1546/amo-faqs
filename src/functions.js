@@ -7,9 +7,12 @@ function openallfaqs() {
 	$("#faqlist .panel .panel-collapse").collapse("show");
 }
 
-// OnClick event on additem.php
+// OnClick event on additem.php and editxml.php
 // Just copy the contents in the Ace Editor.
-// And hash the value in the password entry.
 function additemfunc() {
 	$("#answer").val(anseditor.getValue());
+}
+
+function editxmlfunc() {
+	$("#xml").val(xmleditor.getValue());
 }

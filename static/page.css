@@ -3,16 +3,24 @@
 	Author     : Satgo1546
 */
 
+/* Basics */
+
 body {
 	padding-top: 50px;
 }
+
+/* AMO Bootstrap */
+
 h1, h2, h3, h4, h5, h6 {
 	color: #F59000;
 }
 .label-default {
 	background-color: #F59000;
 }
-#answer_editor {
+
+/* AMO FAQs special csses */
+
+#answer_editor, #xml_editor {
 	position: relative;
 	width: 100%;
 	height: 550px;
@@ -22,15 +30,13 @@ h1, h2, h3, h4, h5, h6 {
 .panel-heading a {
 	color: #333;
 }
-.searchbtn {
-	width: 10em;
-}
 
 /*
 	Sticky footer
 	Really thanks the bootstrap tutorial page here:
 	http://v3.bootcss.com/examples/sticky-footer/
 */
+
 html, body {
 	height: 100%;
 }
