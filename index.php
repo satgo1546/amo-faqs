@@ -64,22 +64,97 @@ require_once("lib/markdown/Markdown.inc.php");
 					foreach ($faqxml->category as $c) {
 						echo "<hr />";
 						echo "<h2><span class=\"label label-primary\">C-$c->id</span> $c->name</h2>";
-						foreach ($c->faq as $f) {
-							?>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<span class="label label-default"><?php echo $f->id; ?></span>
-									<a data-toggle="collapse" href="#<?php echo strtolower($f->id) ?>">
-										Q：<?php echo "$f->q"; ?>
-									</a>
+						switch ($c->display) {
+							case "bugs":
+								?>
+								<div class="table-responsive">
+									<table class="table table-responsive">
+										<thead>
+											<tr>
+												<th>描述</th>
+												<th>截图</th>
+												<th>解决方案</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											foreach ($c->faq as $f) {
+												?>
+												<tr>
+													<td>
+														<span class="label label-default"><?php echo $f->id; ?></span>
+														<?php echo $f->q; ?>
+													</td>
+													<td>
+														<?php
+														if (isset($f->snapshot)) {
+															echo "<a href=\"$f->snapshot\" target=\"_blank\">";
+														}
+														?>
+														<img
+															src="<?php echo isset($f->snapshot) ? $f->snapshot : "static/null.png"; ?>"
+															<?php
+															if (isset($f->snapshot)) {
+																echo "alt=\"点击放大\"";
+															}
+															?>
+															class="img-thumbnail img-responsive"/>
+															<?php
+															if (isset($f->snapshot)) {
+																echo "</a>";
+															}
+															?>
+													</td>
+													<td>
+														<?php echo Michelf\Markdown::defaultTransform($f->a); ?>
+													</td>
+												</tr>
+												<?php
+											}
+											?>
+										</tbody>
+									</table>
 								</div>
-								<div class="panel-collapse collapse" id="<?php echo strtolower($f->id) ?>">
-									<div class="panel-body">
-										<?php echo Michelf\Markdown::defaultTransform("A：" . $f->a); ?>
+								<?php
+								break;
+							case "nouns":
+								foreach ($c->faq as $f) {
+									?>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<span class="label label-default"><?php echo $f->id; ?></span>
+											<a data-toggle="collapse" href="#<?php echo strtolower($f->id); ?>">
+												<?php echo $f->q; ?>
+											</a>
+										</div>
+										<div class="panel-collapse collapse" id="<?php echo strtolower($f->id); ?>">
+											<div class="panel-body">
+												<?php echo Michelf\Markdown::defaultTransform($f->a); ?>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-							<?php
+									<?php
+								}
+								break;
+							default:
+								foreach ($c->faq as $f) {
+									?>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<span class="label label-default"><?php echo $f->id; ?></span>
+											<a data-toggle="collapse" href="#<?php echo strtolower($f->id); ?>">
+												Q：<?php echo $f->q; ?>
+											</a>
+										</div>
+										<div class="panel-collapse collapse" id="<?php echo strtolower($f->id); ?>">
+											<div class="panel-body">
+												<?php echo Michelf\Markdown::defaultTransform("A：$f->a"); ?>
+											</div>
+										</div>
+									</div>
+									<?php
+								}
+								break;
 						}
 					}
 					?>

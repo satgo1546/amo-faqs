@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- CDATA 根本搞不清楚……让SimpleXML去处理吧~ -->
+<!--
+satgo：
+
+-->
 <faqs>
 	<category>
 		<name>Basic</name>
 		<id>B</id>
+		<display>normal</display>
 		<faq>
 			<id>B1</id>
 			<q>Hello!</q>
@@ -40,8 +44,25 @@
 		</faq>
 	</category>
 	<category>
+		<name>BUGs</name>
+		<id>U</id>
+		<display>bugs</display>
+		<faq>
+			<id>U1</id>
+			<q>BUG test!</q>
+			<a>Click the image on the *left* to view **full** image.</a>
+			<snapshot>static/null.png</snapshot>
+		</faq>
+		<faq>
+			<id>U2</id>
+			<q>BUG test II!</q>
+			<a>啦啦啦啦~</a>
+		</faq>
+	</category>
+	<category>
 		<name>Other</name>
 		<id>O</id>
+		<display>normal</display>
 		<faq>
 			<id>O1</id>
 			<q>Hello!</q>
