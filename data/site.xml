@@ -2,6 +2,7 @@
 <site>
 	<title>橙光 FAQ</title>
 	<footer>Copyright</footer>
+	<timezone>Asia/Shanghai</timezone>
 	<bigtitle>欢迎来到橙光 FAQ！</bigtitle>
 	<satgo><![CDATA[新FAQ平台真是想让人掀桌……虽然是自己做的……但结合了Markdown还是很奇葩……]]></satgo>
 	<searchtip>

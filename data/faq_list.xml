@@ -12,6 +12,11 @@ satgo：
 			<id>B1</id>
 			<q>Hello!</q>
 			<a>Hello!</a>
+			<date>
+				<year>2014</year>
+				<month>3</month>
+				<day>1</day>
+			</date>
 		</faq>
 		<faq>
 			<id>B2</id>
@@ -65,6 +70,16 @@ satgo：
 		<display>normal</display>
 		<faq>
 			<id>O1</id>
+			<q>Hello!</q>
+			<a>Hello!</a>
+		</faq>
+	</category>
+	<category>
+		<name>Nouns</name>
+		<id>N</id>
+		<display>nouns</display>
+		<faq>
+			<id>N1</id>
 			<q>Hello!</q>
 			<a>Hello!</a>
 		</faq>

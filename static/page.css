@@ -30,6 +30,14 @@ h1, h2, h3, h4, h5, h6 {
 .panel-heading a {
 	color: #333;
 }
+.faqdate {
+	color: #4C3F2F;
+	font-size: small;
+	float: right;
+}
+.faqbugs .faqdate {
+	color: #666;
+}
 
 /*
 	Sticky footer

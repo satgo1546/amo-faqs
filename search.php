@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once("src/loaded_list.php");
+require_once("src/constants.php");
 require_once("lib/markdown/Markdown.inc.php");
 ?>
 <html>
@@ -14,7 +14,7 @@ require_once("lib/markdown/Markdown.inc.php");
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
 					<span class="sr-only">显示导航栏</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -24,7 +24,7 @@ require_once("lib/markdown/Markdown.inc.php");
 					<img src="static/icon.png" alt="<?php echo $sitexml->title; ?>" width="16" height="16" /> <?php echo $sitexml->title; ?>
 				</a>
 			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse" id="nav-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="http://bbs.66rpg.com/thread-324640-1-1.html"><i class="fa fa-arrow-circle-o-left"></i> 返回帖子</a></li>
 					<li><a href="./"><i class="fa fa-home"></i> 首页</a></li>
@@ -61,58 +61,187 @@ require_once("lib/markdown/Markdown.inc.php");
 				</div>
 				<?php
 				if ($_GET["q"] != "") {
-				?>
-				<div class="faqlist" id="faqlist">
-					<?php
-					foreach ($faqxml->xpath("category/faq[id='{$_GET["q"]}']") as $em) {
 					?>
-					<hr />
-					<h2>精确匹配</h2>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<span class="label label-default"><?php echo $em->id; ?></span>
-							<a data-toggle="collapse" href="#exactmatch">
-								Q：<?php echo $em->q; ?>
-							</a>
-						</div>
-						<div class="panel-collapse collapse in" id="exactmatch">
-							<div class="panel-body">
-								<?php echo Michelf\Markdown::defaultTransform("A：" . $em->a); ?>
+					<div class="faqlist" id="faqlist">
+						<?php
+						foreach ($faqxml->xpath("category/faq[id='{$_GET["q"]}']") as $em) {
+							?>
+							<hr />
+							<h2>精确匹配</h2>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<span class="label label-default"><?php echo $em->id; ?></span>
+									<a data-toggle="collapse" href="#exactmatch">
+										Q：<?php echo $em->q; ?>
+									</a>
+								</div>
+								<div class="panel-collapse collapse in" id="exactmatch">
+									<div class="panel-body">
+										<?php echo Michelf\Markdown::defaultTransform("A：" . $em->a); ?>
+									</div>
+								</div>
 							</div>
-						</div>
+							<?php
+						}
+						foreach ($faqxml->category as $c) {
+							echo "<hr />";
+							echo "<h2><span class=\"label label-primary\">C-$c->id</span> $c->name</h2>";
+							$found = FALSE;
+							switch ($c->display) {
+								case "bugs":
+									?>
+									<div class="table-responsive">
+										<table class="table faqbugs">
+											<thead>
+												<tr>
+													<th>描述</th>
+													<th>截图</th>
+													<th>解决方案</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												foreach ($c->faq as $f) {
+													if ((stripos((string) $f->q, $_GET["q"]) !== FALSE) || (stripos((string) $f->q, $_GET["q"]) !== FALSE)) {
+														$found = TRUE;
+														?>
+														<tr>
+															<td>
+																<span class="label label-default"><?php echo $f->id; ?></span>
+																<?php echo $f->q; ?>
+																<div class="faqdate">
+																	此条更新日期：<?php
+																	if (isset($f->date)) {
+																		echo "{$f->date->year}-{$f->date->month}-{$f->date->day}";
+																	} else {
+																		echo "未知";
+																	}
+																	?>
+																</div>
+															</td>
+															<td>
+																<?php
+																if (isset($f->snapshot)) {
+																	echo "<a href=\"$f->snapshot\" target=\"_blank\">";
+																}
+																?>
+																<img
+																	src="<?php echo isset($f->snapshot) ? $f->snapshot : "static/null.png"; ?>"
+																	<?php
+																	if (isset($f->snapshot)) {
+																		echo "alt=\"点击放大\"";
+																	}
+																	?>
+																	class="img-thumbnail img-responsive"/>
+																	<?php
+																	if (isset($f->snapshot)) {
+																		echo "</a>";
+																	}
+																	?>
+															</td>
+															<td>
+																<?php echo Michelf\Markdown::defaultTransform($f->a); ?>
+															</td>
+														</tr>
+														<?php
+													}
+												}
+												?>
+											</tbody>
+										</table>
+									</div>
+									<?php
+									break;
+								case "nouns":
+									foreach ($c->faq as $f) {
+										if ((stripos((string) $f->q, $_GET["q"]) !== FALSE) || (stripos((string) $f->q, $_GET["q"]) !== FALSE)) {
+											$found = TRUE;
+											?>
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<span class="label label-default"><?php echo $f->id; ?></span>
+													<a data-toggle="collapse" href="#<?php echo strtolower($f->id); ?>">
+														<?php echo $f->q; ?>
+													</a>
+													<div class="faqdate">
+														此条更新日期：<?php
+														if (isset($f->date)) {
+															echo "{$f->date->year}-{$f->date->month}-{$f->date->day}";
+														} else {
+															echo "未知";
+														}
+														?>
+													</div>
+												</div>
+												<div class="panel-collapse collapse" id="<?php echo strtolower($f->id); ?>">
+													<div class="panel-body">
+														<?php echo Michelf\Markdown::defaultTransform($f->a); ?>
+													</div>
+												</div>
+											</div>
+											<?php
+										}
+									}
+									break;
+								default:
+									foreach ($c->faq as $f) {
+										if ((stripos((string) $f->q, $_GET["q"]) !== FALSE) || (stripos((string) $f->q, $_GET["q"]) !== FALSE)) {
+											$found = TRUE;
+											?>
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<span class="label label-default"><?php echo $f->id; ?></span>
+													<a data-toggle="collapse" href="#<?php echo strtolower($f->id); ?>">
+														Q：<?php echo $f->q; ?>
+													</a>
+													<div class="faqdate">
+														此条更新日期：<?php
+														if (isset($f->date)) {
+															echo "{$f->date->year}-{$f->date->month}-{$f->date->day}";
+														} else {
+															echo "未知";
+														}
+														?>
+													</div>
+												</div>
+												<div class="panel-collapse collapse" id="<?php echo strtolower($f->id); ?>">
+													<div class="panel-body">
+														<?php echo Michelf\Markdown::defaultTransform("A：$f->a"); ?>
+													</div>
+												</div>
+											</div>
+											<?php
+										}
+									}
+									break;
+							}
+
+							foreach ($c->faq as $f) {
+								if ((stripos((string) $f->q, $_GET["q"]) !== FALSE) || (stripos((string) $f->q, $_GET["q"]) !== FALSE)) {
+									$found = TRUE;
+									?>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<span class="label label-default"><?php echo $f->id; ?></span>
+											<a data-toggle="collapse" href="#<?php echo strtolower($f->id) ?>">
+												Q：<?php echo "$f->q"; ?>
+											</a>
+										</div>
+										<div class="panel-collapse collapse in" id="<?php echo strtolower($f->id) ?>">
+											<div class="panel-body">
+												<?php echo Michelf\Markdown::defaultTransform("A：" . $f->a); ?>
+											</div>
+										</div>
+									</div>
+									<?php
+								}
+							}
+							if ($found == FALSE) {
+								echo "在此分类下没有找到匹配项。";
+							}
+						}
+						?>
 					</div>
-					<?php
-					}
-					foreach ($faqxml->category as $c) {
-					echo "<hr />";
-					echo "<h2><span class=\"label label-primary\">C-$c->id</span> $c->name</h2>";
-					$found = FALSE;
-					foreach ($c->faq as $f) {
-					if ((stripos((string) $f->q, $_GET["q"]) !== FALSE) || (stripos((string) $f->q, $_GET["q"]) !== FALSE)) {
-					$found = TRUE;
-					?>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<span class="label label-default"><?php echo $f->id; ?></span>
-							<a data-toggle="collapse" href="#<?php echo strtolower($f->id) ?>">
-								Q：<?php echo "$f->q"; ?>
-							</a>
-						</div>
-						<div class="panel-collapse collapse in" id="<?php echo strtolower($f->id) ?>">
-							<div class="panel-body">
-								<?php echo Michelf\Markdown::defaultTransform("A：" . $f->a); ?>
-							</div>
-						</div>
-					</div>
-					<?php
-					}
-					}
-					if ($found == FALSE) {
-					echo "在此分类下没有找到匹配项。";
-					}
-					}
-					?>
-				</div>
 				<?php } else { ?>
 					<hr />
 					请输入问题的关键字。

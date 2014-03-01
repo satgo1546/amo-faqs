@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once("src/loaded_list.php");
+require_once("src/constants.php");
 require_once("src/manpwd.php");
 ?>
 <html>
@@ -14,7 +14,7 @@ require_once("src/manpwd.php");
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
 					<span class="sr-only">显示导航栏</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -24,7 +24,7 @@ require_once("src/manpwd.php");
 					<img src="static/icon.png" alt="<?php echo $sitexml->title; ?>" width="16" height="16" /> <?php echo $sitexml->title; ?>
 				</a>
 			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse" id="nav-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="http://bbs.66rpg.com/thread-324640-1-1.html"><i class="fa fa-arrow-circle-o-left"></i> 返回帖子</a></li>
 					<li><a href="./"><i class="fa fa-home"></i> 首页</a></li>
@@ -56,6 +56,10 @@ require_once("src/manpwd.php");
 								$newitem->addChild("id", $_POST["id"]);
 								$newitem->addChild("q", $_POST["question"]);
 								$newitem->addChild("a", $_POST["answer"]);
+								$nidate = $newitem->addChild("date");
+								$nidate->addChild("year", date("Y"));
+								$nidate->addChild("month", date("n"));
+								$nidate->addChild("day", date("j"));
 							}
 							$faqxml->saveXML("data/faq_list.xml");
 							?>
